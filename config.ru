@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 dev = ENV["RACK_ENV"] == "development"
 
+require "console"
 Console.logger.debug!
 
 require_relative "config/falcon_init"

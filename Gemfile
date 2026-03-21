@@ -10,6 +10,7 @@ gem "rake"
 
 gem "falcon"
 gem "async"
+gem "console"
 
 gem "ostruct" # required for roda-i18n
 gem "roda-i18n"
@@ -17,6 +18,7 @@ gem "roda-i18n"
 gem "datastar"
 
 group :development do
+  gem "puma"
   gem "rubocop"
   gem "rubocop-rake"
   gem "rubocop-sequel"

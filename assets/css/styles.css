@@ -9,11 +9,13 @@
 }
 
 @layer main {
-  #main-logs {
-    height: 30rem;
-    overflow: auto;
-    width: 100%;
-    border: 1px solid black;
+  #logs {
+    #logs-area {
+      height: 30rem;
+      overflow: auto;
+      width: 100%;
+      border: 1px solid black;
+    }
   }
 
   #report {

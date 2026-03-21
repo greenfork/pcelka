@@ -44,12 +44,11 @@ class App < Roda
 
     r.get "logs" do
       ds.stream do |sse|
-        while new_id = LOGS_READY.wait
-          sse.patch_elements(
-            %(<div>Hello, World! #{new_id}</div>),
+        LOGS_COLLECTOR.retrieve_new_logs do |log|
+          sse.patch_elements \
+            part("logs/log_line", log:),
             mode: "append",
-            selector: "#main-logs"
-          )
+            selector: "#logs-area"
         end
       end
     end
