@@ -26,12 +26,20 @@ module Pcelka
       # From Procfile, we get all commands wrapped into `sh` so this error
       # could only happen when `sh` is not found on the system. Could happen
       # more often for other formats.
-      raise "Unknown command: #{spec.cmd}"
+      raise "Unknown command: '#{spec.cmd}'"
     end
 
     def alive? = !dead?
     def dead? = !@thread.alive?
     def stopping? = @stopping
+
+    def status
+      if alive? then :alive
+      elsif dead? then :dead
+      elsif stopping? then :stopping
+      else :unknown
+      end
+    end
 
     def read_stdout
       if @stdout_ready

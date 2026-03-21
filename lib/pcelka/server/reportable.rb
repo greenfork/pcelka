@@ -5,29 +5,24 @@ module Pcelka
   class Server
     module Reportable
       Report = Data.define(:items, :allowed_actions)
-      ReportItem = Data.define(:id, :cmd, :state, :allowed_actions)
+      ReportItem = Data.define(:id, :cmd, :status, :allowed_actions)
 
       def report
         items =
           @spec.keys.sort.map do |id|
             program_spec = @spec[id]
             program = @started_programs.find{ it.id == id }
-            state = program_state(program)
-            ReportItem.new id:, cmd: program_spec.cmd, state:,
-              allowed_actions: allowed_program_actions(state)
+            status = program_status(program)
+            ReportItem.new id:, cmd: program_spec.cmd, status:,
+              allowed_actions: allowed_program_actions(status)
           end
 
         Report.new items:, allowed_actions: allowed_server_actions(items)
       end
 
       private
-        def program_state(program)
-          if program.nil? then :not_started
-          elsif program.alive? then :alive
-          elsif program.dead? then :dead
-          elsif program.stopping? then :stopping
-          else :unknown
-          end
+        def program_status(program)
+          program&.status || :not_started
         end
 
         NOT_STARTED_ACTIONS = %i[start].freeze
@@ -38,8 +33,8 @@ module Pcelka
         private_constant :NOT_STARTED_ACTIONS, :ALIVE_ACTIONS, :DEAD_ACTIONS,
           :STOPPING_ACTIONS, :UNKNOWN_ACTIONS
 
-        def allowed_program_actions(state)
-          case state
+        def allowed_program_actions(status)
+          case status
           when :not_started then NOT_STARTED_ACTIONS
           when :alive then ALIVE_ACTIONS
           when :dead then DEAD_ACTIONS

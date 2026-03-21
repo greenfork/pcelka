@@ -3,7 +3,7 @@
 require "pcelka/server/writing"
 require "pcelka/server/commandable"
 
-# Server that runs several command line programs.
+# Runs several command line programs.
 module Pcelka
   class Server
     include Writing, Commandable
@@ -12,7 +12,7 @@ module Pcelka
 
     # @param spec [Spec]
     # @param client_sink [Object#<<]
-    # @param wakeup_io [IO]
+    # @param wakeup_io [IO#readbyte]
     # @param mailbox [Object#pop] receives messages from clients.
     def initialize(spec:, client_sink:, wakeup_io:, mailbox:)
       @spec = spec

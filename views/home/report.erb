@@ -9,13 +9,13 @@
   <table>
     <thead>
       <tr>
-        <th>ID</th><th>State</th><th>Actions</th>
+        <th>ID</th><th>Status</th><th>Actions</th>
       </tr>
     </thead>
       <% report.items.each do |item| %>
         <tr>
           <td><%= item.id %></td>
-          <td><%= item.state %></td>
+          <td><%= item.status %></td>
           <td>
             <div class="actions">
               <% item.allowed_actions.each do |action| %>
