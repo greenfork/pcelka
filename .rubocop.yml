@@ -1,0 +1,65 @@
+AllCops:
+  # DisabledByDefault: true
+  TargetRubyVersion: "4.0"
+  NewCops: enable
+  Exclude:
+    - 'Gemfile'
+    - 'examples/**/*'
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'scratch/**/*'
+
+plugins:
+  - rubocop-rake
+  - rubocop-sequel
+  - rubocop-performance
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+
+# Disabling everything
+Layout/EmptyLineAfterMagicComment:
+  Enabled: false
+Lint/AssignmentInCondition:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+Style/FetchEnvVar:
+  Enabled: false
+Layout/EmptyLinesAroundAccessModifier:
+  Enabled: false
+Layout/SpaceInsideBlockBraces:
+  Enabled: false
+Layout/SpaceBeforeBlockBraces:
+  Enabled: false
+Layout/MultilineHashBraceLayout:
+  Enabled: false
+Style/NegatedIf:
+  Enabled: false
+Metrics:
+  Enabled: false
+Layout/MultilineArrayBraceLayout:
+  Enabled: false
+Layout/ArgumentAlignment:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Lint/SuppressedException:
+  Enabled: false
+Style/MixinGrouping:
+  Enabled: false
+Style/ParallelAssignment:
+  Enabled: false
+Layout/HashAlignment:
+  Enabled: false
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
