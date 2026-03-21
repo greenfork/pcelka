@@ -1,0 +1,18 @@
+report:
+  action:
+    start_all: Start all
+    stop_all: Stop all
+    start: Start
+    restart: Restart
+    stop: Stop
+  col:
+    app: Application
+    status: Status
+    actions: Actions
+program:
+  status:
+    not_started: Not started
+    alive: Alive
+    dead: Dead
+    stopping: Stopping
+    unknown: Unknown

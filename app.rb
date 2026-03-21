@@ -3,7 +3,6 @@ require "roda"
 require "datastar"
 
 class App < Roda
-  plugin :symbol_views
   plugin :render, escape: true, assume_fixed_locals: true,
     template_opts: {
       scope_class: self,
@@ -14,9 +13,13 @@ class App < Roda
       skip_compiled_encoding_detection: true,
     }
   plugin :assets, css: "styles.css", js: "app.js"
+  plugin :symbol_views
   plugin :public
   plugin :part
   plugin :head
+  plugin :i18n, locale: %w"en ru"
+
+  R18n.set("ru")
 
   route do |r|
     r.public

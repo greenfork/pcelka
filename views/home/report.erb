@@ -10,13 +10,15 @@
   <table>
     <thead>
       <tr>
-        <th>ID</th><th>Status</th><th>Actions</th>
+        <th><%= t.report.col.app %></th>
+        <th class="status-column"><%= t.report.col.status %></th>
+        <th><%= t.report.col.actions %></th>
       </tr>
     </thead>
       <% report.items.each do |item| %>
         <tr>
           <td><%= item.id %></td>
-          <td><%= item.status %></td>
+          <td><%= t.program.status[item.status] %></td>
           <td>
             <div class="actions">
               <% program_allowed_actions = item.allowed_actions 

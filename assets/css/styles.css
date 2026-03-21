@@ -16,9 +16,15 @@
     border: 1px solid black;
   }
 
-  .actions {
-    display: flex;
-    gap: var(--s2);
+  #report {
+    .actions {
+      display: flex;
+      gap: var(--s2);
+    }
+
+    .status-column {
+      min-width: 20ch;
+    }
   }
 }
 

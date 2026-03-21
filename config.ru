@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 dev = ENV["RACK_ENV"] == "development"
 
+Console.logger.debug!
+
 require_relative "config/falcon_init"
 require_relative "config/datastar"
-
-Console.logger.debug!
 
 $LOAD_PATH.unshift(File.expand_path("lib", __dir__))
 require_relative "pcelka"

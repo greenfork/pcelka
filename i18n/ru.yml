@@ -1,0 +1,18 @@
+report:
+  action:
+    start_all: Запустить все
+    stop_all: Остановить все
+    start: Запустить
+    restart: Перезапустить
+    stop: Остановить
+  col:
+    app: Приложение
+    status: Статус
+    actions: Действия
+program:
+  status:
+    not_started: Не запущено
+    alive: Живо
+    dead: Мертво
+    stopping: Останавливается
+    unknown: Неизвестно

@@ -7,10 +7,12 @@ gem "sequel"
 gem "sqlite3"
 gem "refrigerator", ">= 1"
 gem "rake"
-gem "logger"
 
 gem "falcon"
 gem "async"
+
+gem "ostruct" # required for roda-i18n
+gem "roda-i18n"
 
 gem "datastar"
 

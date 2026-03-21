@@ -76,6 +76,7 @@ GEM
       json-schema (>= 4.1)
     metrics (0.15.0)
     openssl (4.0.1)
+    ostruct (0.6.3)
     parallel (1.27.0)
     parser (3.3.10.2)
       ast (~> 2.4.1)
@@ -94,6 +95,7 @@ GEM
       rack (>= 1.0)
     protocol-url (0.4.0)
     public_suffix (7.0.5)
+    r18n-core (3.2.0)
     racc (1.8.1)
     rack (3.2.5)
     rainbow (3.1.1)
@@ -102,6 +104,10 @@ GEM
     regexp_parser (2.11.3)
     roda (3.102.0)
       rack
+    roda-i18n (0.4.0)
+      r18n-core (~> 3.0)
+      roda (~> 3.7)
+      tilt
     rubocop (1.85.1)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -167,10 +173,11 @@ DEPENDENCIES
   datastar
   erubi (>= 1.5)
   falcon
-  logger
+  ostruct
   rake
   refrigerator (>= 1)
   roda (>= 3.89)
+  roda-i18n
   rubocop
   rubocop-performance
   rubocop-rake
@@ -210,6 +217,7 @@ CHECKSUMS
   mcp (0.9.0) sha256=a0a3737b0ac9df0772f4ef7e2b013c260ddbcf217a5d50a66bff0baeddf03e47
   metrics (0.15.0) sha256=61ded5bac95118e995b1bc9ed4a5f19bc9814928a312a85b200abbdac9039072
   openssl (4.0.1) sha256=e27974136b7b02894a1bce46c5397ee889afafe704a839446b54dc81cb9c5f7d
+  ostruct (0.6.3) sha256=95a2ed4a4bd1d190784e666b47b2d3f078e4a9efda2fccf18f84ddc6538ed912
   parallel (1.27.0) sha256=4ac151e1806b755fb4e2dc2332cbf0e54f2e24ba821ff2d3dcf86bf6dc4ae130
   parser (3.3.10.2) sha256=6f60c84aa4bdcedb6d1a2434b738fe8a8136807b6adc8f7f53b97da9bc4e9357
   prism (1.9.0) sha256=7b530c6a9f92c24300014919c9dcbc055bf4cdf51ec30aed099b06cd6674ef85
@@ -220,6 +228,7 @@ CHECKSUMS
   protocol-rack (0.22.0) sha256=b7c49c0b597ca2c6d20f8bcd746c4415a1b750eacfbe64f828e780c978a4293d
   protocol-url (0.4.0) sha256=64d4c03b6b51ad815ac6fdaf77a1d91e5baf9220d26becb846c5459dacdea9e1
   public_suffix (7.0.5) sha256=1a8bb08f1bbea19228d3bed6e5ed908d1cb4f7c2726d18bd9cadf60bc676f623
+  r18n-core (3.2.0) sha256=00c257d4b39253b79762c882159d526eb13745824bd1547a0e3d24e0535ac420
   racc (1.8.1) sha256=4a7f6929691dbec8b5209a0b373bc2614882b55fc5d2e447a21aaa691303d62f
   rack (3.2.5) sha256=4cbd0974c0b79f7a139b4812004a62e4c60b145cba76422e288ee670601ed6d3
   rainbow (3.1.1) sha256=039491aa3a89f42efa1d6dec2fc4e62ede96eb6acd95e52f1ad581182b79bc6a
@@ -227,6 +236,7 @@ CHECKSUMS
   refrigerator (1.9.0) sha256=dd1d73a8f0a242e24d3fe6b3d4fad160886d563e56ce64b653a80d9935eac90c
   regexp_parser (2.11.3) sha256=ca13f381a173b7a93450e53459075c9b76a10433caadcb2f1180f2c741fc55a4
   roda (3.102.0) sha256=b2156fff6d2b1b52bfac39e4ccde0d820a26594f069c3d9e99cc0853f7ee7dcc
+  roda-i18n (0.4.0) sha256=ddc0950067f7c6667c7bfcec660ea8371639ff6ff352af44f34b86e83decd011
   rubocop (1.85.1) sha256=3dbcf9e961baa4c376eeeb2a03913dca5e3987033b04d38fa538aa1e7406cc77
   rubocop-ast (1.49.1) sha256=4412f3ee70f6fe4546cc489548e0f6fcf76cafcfa80fa03af67098ffed755035
   rubocop-performance (1.26.1) sha256=cd19b936ff196df85829d264b522fd4f98b6c89ad271fa52744a8c11b8f71834
