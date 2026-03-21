@@ -1,8 +1,9 @@
 <%# locals: (report:) %>
-<article id="report">
+<article id="report" data-init="@get('/')">
   <div class="actions mb3">
-    <% report.allowed_actions.each do |action| %>
-      <%== part "home/action", action: action %>
+    <% report_allowed_actions = report.allowed_actions 
+       report.possible_actions.each do |action| %>
+      <%== part "home/action", action: action, disabled: !report_allowed_actions.include?(action) %>
     <% end %>
   </div>
 
@@ -18,8 +19,10 @@
           <td><%= item.status %></td>
           <td>
             <div class="actions">
-              <% item.allowed_actions.each do |action| %>
-                <%== part "home/action", action: action, program_id: item.id %>
+              <% program_allowed_actions = item.allowed_actions 
+                 item.possible_actions.each do |action| %>
+                <%== part "home/action", action: action, program_id: item.id,
+                       disabled: !program_allowed_actions.include?(action) %>
               <% end %>
             </div>
           </td>

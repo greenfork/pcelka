@@ -20,17 +20,20 @@ module Pcelka
       spec = Spec.from_procfile(procfile)
       client_sink = Async::Queue.new
       mailbox = Async::Queue.new
+      programs_status_changed_cond = Async::Condition.new
       read, write = IO.pipe
-      server = Server.new(spec:, client_sink:, wakeup_io: read, mailbox:)
+      server = Server.new spec:, client_sink:, wakeup_io: read, mailbox:,
+        programs_status_changed_cond:;
 
-      new server:, client_sink:, wakeup_io: write, server_mailbox: mailbox
+      new server:, client_sink:, wakeup_io: write, server_mailbox: mailbox,
+        programs_status_changed_cond:
     end
 
     attr_reader :server
 
-    def initialize(server:, client_sink:, wakeup_io:, server_mailbox:)
-      @server, @client_sink, @wakeup_io, @server_mailbox =
-        server, client_sink, wakeup_io, server_mailbox
+    def initialize(server:, client_sink:, wakeup_io:, server_mailbox:, programs_status_changed_cond:)
+      @server, @client_sink, @wakeup_io, @server_mailbox, @programs_status_changed_cond =
+        server, client_sink, wakeup_io, server_mailbox, programs_status_changed_cond
     end
 
     def <<(cmd)
@@ -39,6 +42,10 @@ module Pcelka
       @client_sink.pop
     rescue Errno::EPIPE
       raise "Failed to write to @runner's pipe"
+    end
+
+    def programs_status_changed?
+      @programs_status_changed_cond.wait
     end
   end
 end

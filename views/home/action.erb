@@ -1,4 +1,4 @@
-<%# locals: (action:, program_id: nil) %>
+<%# locals: (action:, disabled:, program_id: nil) %>
 <%
 path = program_id ? "/programs/#{program_id}/#{action}" : "/programs/#{action}"
 action_name =
@@ -12,6 +12,6 @@ action_name =
 %>
 
 <form action="<%= path %>" method="POST">
-  <input type="submit" value="<%= action_name %>"
-      data-on:click__prevent="@post('<%= path %>')">
+  <input type="submit" value="<%= action_name %>" <%= "disabled" if disabled %>
+    data-on:click__prevent="@post('<%= path %>')">
 </form>

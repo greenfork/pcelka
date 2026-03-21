@@ -26,7 +26,17 @@ class App < Roda
 
     r.root do
       @report = PCELKA << :report
-      :home
+      if ds.sse?
+        ds.stream do |sse|
+          sse.patch_elements part("home/report", report: @report)
+          while PCELKA.programs_status_changed?
+            report = PCELKA << :report
+            sse.patch_elements part("home/report", report:)
+          end
+        end
+      else
+        :home
+      end
     end
 
     r.get "logs" do
@@ -44,8 +54,7 @@ class App < Roda
     r.on "programs" do
       program_action_response = lambda do
         if ds.sse?
-          report = PCELKA << :report
-          ds.patch_elements part("home/report", report:)
+          ""
         else
           r.redirect "/"
         end

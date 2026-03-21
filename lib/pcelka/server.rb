@@ -2,11 +2,12 @@
 
 require "pcelka/server/writing"
 require "pcelka/server/commandable"
+require "pcelka/server/notifiable"
 
 # Runs several command line programs.
 module Pcelka
   class Server
-    include Writing, Commandable
+    include Writing, Commandable, Notifiable
 
     WAKEUP_BYTE = 1
 
@@ -14,15 +15,17 @@ module Pcelka
     # @param client_sink [Object#<<]
     # @param wakeup_io [IO#readbyte]
     # @param mailbox [Object#pop] receives messages from clients.
-    def initialize(spec:, client_sink:, wakeup_io:, mailbox:)
-      @spec = spec
+    # @param programs_status_changed_cond [Async::Condition]
+    def initialize(spec:, client_sink:, wakeup_io:, mailbox:, programs_status_changed_cond:)
+      @spec, @client_sink, @wakeup_io, @mailbox =
+        spec, client_sink, wakeup_io, mailbox
       @running_programs = []
       @started_programs = []
       @watch_ios = []
-      @client_sink, @wakeup_io, @mailbox = client_sink, wakeup_io, mailbox
       @is_pending_cmd = false
       @should_stop = false
       init_writer
+      init_notifiable programs_status_changed_cond:
     end
 
     def run
@@ -33,6 +36,7 @@ module Pcelka
           write_programs_output(programs)
           process_cmd
         end
+        notify_programs_status_changed
         prune_dead_programs
       end
     end
@@ -41,7 +45,7 @@ module Pcelka
       def check_ready_io
         ios_to_watch = @running_programs.flat_map(&:ios)
         ios_to_watch << @wakeup_io
-        IO.select(ios_to_watch)
+        IO.select ios_to_watch, nil, nil, 0.1
       end
 
       def ready_programs(ios)

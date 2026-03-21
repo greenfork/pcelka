@@ -4,8 +4,9 @@
 module Pcelka
   class Server
     module Reportable
-      Report = Data.define(:items, :allowed_actions)
-      ReportItem = Data.define(:id, :cmd, :status, :allowed_actions)
+      Report = Data.define(:items, :allowed_actions, :possible_actions)
+      ReportItem = Data.define(:id, :cmd, :status, :allowed_actions,
+        :possible_actions)
 
       def report
         items =
@@ -14,10 +15,12 @@ module Pcelka
             program = @started_programs.find{ it.id == id }
             status = program_status(program)
             ReportItem.new id:, cmd: program_spec.cmd, status:,
-              allowed_actions: allowed_program_actions(status)
+              allowed_actions: allowed_program_actions(status),
+              possible_actions: PROGRAM_POSSIBLE_ACTIONS
           end
 
-        Report.new items:, allowed_actions: allowed_server_actions(items)
+        Report.new items:, allowed_actions: allowed_server_actions(items),
+          possible_actions: SERVER_POSSIBLE_ACTIONS
       end
 
       private
@@ -25,13 +28,16 @@ module Pcelka
           program&.status || :not_started
         end
 
+        SERVER_POSSIBLE_ACTIONS = %i[start_all stop_all].freeze
+        PROGRAM_POSSIBLE_ACTIONS = %i[start restart stop].freeze
         NOT_STARTED_ACTIONS = %i[start].freeze
         ALIVE_ACTIONS = %i[stop restart].freeze
         DEAD_ACTIONS = %i[start].freeze
         STOPPING_ACTIONS = [].freeze
         UNKNOWN_ACTIONS = [].freeze
         private_constant :NOT_STARTED_ACTIONS, :ALIVE_ACTIONS, :DEAD_ACTIONS,
-          :STOPPING_ACTIONS, :UNKNOWN_ACTIONS
+          :STOPPING_ACTIONS, :UNKNOWN_ACTIONS, :PROGRAM_POSSIBLE_ACTIONS,
+          :SERVER_POSSIBLE_ACTIONS
 
         def allowed_program_actions(status)
           case status

@@ -4,5 +4,5 @@ ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../Gemfile", __dir__)
 require "bundler/setup"
 
 Dir.chdir(File.expand_path("..", __dir__)) do
-  Process.exec "bundle exec falcon host service.rb"
+  Process.exec "bundle exec falcon serve --bind http://localhost:9292 -n 1"
 end

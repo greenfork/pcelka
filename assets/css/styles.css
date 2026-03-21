@@ -29,6 +29,10 @@
     border: none;
     cursor: pointer;
     font-size: 1em;
+
+    &:disabled {
+      cursor: unset;
+    }
   }
 
   table {
