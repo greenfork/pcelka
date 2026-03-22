@@ -43,12 +43,14 @@ class App < Roda
     end
 
     r.get "logs" do
+      last_id = ds.signals["log_last_id"] || 0
       ds.stream do |sse|
-        LOGS_COLLECTOR.retrieve_new_logs do |log|
+        LOGS_COLLECTOR.retrieve_new_logs(last_id) do |log|
           sse.patch_elements \
             part("logs/log_line", log:),
             mode: "append",
             selector: "#logs-area"
+          sse.patch_signals log_last_id: log[:id]
         end
       end
     end
