@@ -11,10 +11,11 @@
 @layer main {
   #logs {
     #logs-area {
-      height: 30rem;
+      height: 4rem;
       overflow: auto;
       width: 100%;
       border: 1px solid black;
+      font-family: monospace;
     }
   }
 

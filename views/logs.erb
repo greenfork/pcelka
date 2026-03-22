@@ -1,3 +1,15 @@
+<pre data-json-signals></pre>
 <section id="logs">
-  <div id="logs-area" data-init="@get('/logs')"></div>
+  <div class="mb1">
+    <label>
+      <input type="checkbox" value="true" data-bind:_scroll-to-bottom>
+      <%= t.logs.scroll_to_bottom %>
+    </label>
+  </div>
+  <div id="logs-area"
+    data-init="@get('/logs')"
+    data-on-signal-patch="$_scrollToBottom ? el.scrollTop = el.scrollHeight : null"
+    data-on-signal-patch-filter="{include: /^(log_last_id|_scrollToBottom)$/}"
+    >
+  </div>
 </section>

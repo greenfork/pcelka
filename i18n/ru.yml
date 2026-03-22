@@ -16,3 +16,5 @@ program:
     dead: Мертво
     stopping: Останавливается
     unknown: Неизвестно
+logs:
+  scroll_to_bottom: Прокрутить до конца
