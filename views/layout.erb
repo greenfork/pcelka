@@ -9,7 +9,7 @@
     <link rel="manifest" href="/site.webmanifest">
     <script type="module" src="/vendor/datastar.js"></script>
     <%== assets(:css) %>
-    <%== assets(:js) %>
+    <%== assets(:js, type: "module") %>
     <title>Pcelka<% if @page_title %> - <%= @page_title %><% end %></title>
   </head>
   <body>

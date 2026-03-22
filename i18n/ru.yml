@@ -17,4 +17,4 @@ program:
     stopping: Останавливается
     unknown: Неизвестно
 logs:
-  scroll_to_bottom: Прокрутить до конца
+  scroll_to_bottom: Прокрутить до конца (s)

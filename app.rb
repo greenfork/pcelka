@@ -12,7 +12,7 @@ class App < Roda
       chain_appends: true,
       skip_compiled_encoding_detection: true,
     }
-  plugin :assets, css: "styles.css", js: "app.js"
+  plugin :assets, css: "styles.css", js: %w"app.js hotkey.js"
   plugin :symbol_views
   plugin :public
   plugin :part
