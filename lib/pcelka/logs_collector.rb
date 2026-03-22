@@ -20,8 +20,6 @@ module Pcelka
       end
     end
 
-    # TODO: make multi-threaded or whatever, currently works for a single
-    # browser window only.
     def retrieve_new_logs
       logs = LOGS.order(:id).all
       last_id = 0

@@ -67,3 +67,5 @@ Style/Semicolon:
   Enabled: false
 Style/PercentLiteralDelimiters:
   Enabled: false
+Style/InfiniteLoop:
+  Enabled: false
