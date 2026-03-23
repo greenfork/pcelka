@@ -1,0 +1,21 @@
+<%# locals: (direction:) %>
+
+<svg viewBox="-20 0 40 70" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <polygon id="base" points="0,0 20,20 0,40 -20,20" />
+  <g id="point">
+     <clipPath id="clp">
+       <polygon points="0,10 15,30 0,25 -15,30" />
+     </clipPath>
+     <polygon points="0,0 20,20 0,30 -20,20" fill="var(--color-brown)" />
+     <polygon points="0,10 20,30 0,30 -20,30" fill="var(--color-orange)" clip-path="url(#clp)" />
+  </g>
+</defs>
+<g transform="rotate(<%= direction == :up ? 0 : 180 %>, 0, 35)">
+  <use href="#base" fill="var(--color-brown)" />
+  <use href="#base" y="10" fill="var(--color-orange)" />
+  <use href="#base" y="20" fill="var(--color-brown)" />
+  <use href="#base" y="30" fill="var(--color-orange)" />
+  <use href="#point" y="40" />
+</g>
+</svg>

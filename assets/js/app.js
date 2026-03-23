@@ -1,9 +1,14 @@
 import { addHotkeyListener } from "./hotkey.js";
 
-function toggleScrollToBottomCheckbox() {
-  const checkbox = document.getElementById("scroll-to-bottom-checkbox");
-  if (!checkbox) return;
-  checkbox.click();
+function clickIdIfPresent(id) {
+  const elem = document.getElementById(id);
+  if (!elem) return;
+  elem.click();
 }
 
-addHotkeyListener(["s", "ы"], toggleScrollToBottomCheckbox);
+addHotkeyListener(
+  ["s", "ы"],
+  () => clickIdIfPresent("scroll-to-bottom-checkbox"),
+);
+addHotkeyListener(["u", "г"], () => clickIdIfPresent("nav-up"));
+addHotkeyListener(["d", "в"], () => clickIdIfPresent("nav-down"));

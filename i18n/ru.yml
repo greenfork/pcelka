@@ -18,3 +18,6 @@ program:
     unknown: Неизвестно
 logs:
   scroll_to_bottom: Прокрутить до конца (s)
+nav:
+  up: Вверх (u)
+  down: Вниз (d)

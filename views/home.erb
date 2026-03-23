@@ -1,5 +1,15 @@
-<h1>Pčёlka</h1>
+<h1 id="top-header">Pčёlka</h1>
 
 <%== part "home/report", report: @report %>
 <div class="mb3"></div>
 <%== part "logs" %>
+
+<nav id="aside-nav">
+  <a id="nav-up" class="nav-arrow" title="<%= t.nav.up %>" href="#top-header">
+    <%== part "nav/arrow", direction: :up %>
+  </a>
+
+  <a id="nav-down" class="nav-arrow" title="<%= t.nav.down %>" href="#logs">
+    <%== part "nav/arrow", direction: :down %>
+  </a>
+</nav>

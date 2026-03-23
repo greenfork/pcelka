@@ -1,21 +1,61 @@
-@layer main, component, utility;
+@layer base, main, component, utility;
 
-:root {
-  --s1: .25rem;
-  --s2: .5rem;
-  --s3: 1rem;
-  --s4: 2rem;
-  --s5: 4rem;
+@layer base {
+  body {
+    margin: 0;
+  }
 }
 
 @layer main {
+  :root {
+    --s1: .25rem;
+    --s2: .5rem;
+    --s3: 1rem;
+    --s4: 2rem;
+    --s5: 4rem;
+
+    --lch-brown: 10% 0.4 65;
+    --lch-yellow: 100% 0.2 55;
+    --lch-yellow-light: 100% 0.02 55;
+    --lch-orange: 100% 0.4 65;
+    --lch-orange-dark: 93% 0.4 65;
+
+    --color-bg: oklch(var(--lch-yellow));
+    --color-text: oklch(var(--lch-brown));
+    --color-logs-bg: oklch(var(--lch-yellow-light));
+    --color-button-bg: oklch(var(--lch-orange));
+    --color-border: oklch(var(--lch-brown));
+    --color-scrollbar-thumb: oklch(var(--lch-orange-dark));
+
+    scroll-behavior: smooth;
+    scrollbar-color: var(--color-scrollbar-thumb) var(--color-bg);
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  main {
+    margin: 2rem 0 1rem 1rem;
+    width: calc(100% - 6rem);
+  }
+
   #logs {
+    --controls-height: min(2rem, 10vh);
+
+    #logs-controls {
+      height: var(--controls-height);
+    }
     #logs-area {
-      height: 4rem;
-      overflow: auto;
+      height: calc(100vh - var(--controls-height) - .5rem);
+      overflow-y: scroll;
       width: 100%;
-      border: 1px solid black;
+      border: 1px solid var(--color-border);
       font-family: monospace;
+      background-color: var(--color-logs-bg);
+      scrollbar-color: var(--color-scrollbar-thumb) var(--color-logs-bg);
     }
   }
 
@@ -29,6 +69,28 @@
       min-width: 20ch;
     }
   }
+
+  nav#aside-nav {
+    position: fixed;
+    right: 1rem;
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .nav-arrow {
+      width: 3rem;
+      cursor: pointer;
+
+      svg {
+        height: 100%;
+        width: 100%;
+        --color-brown: oklch(var(--lch-brown));
+        --color-orange: oklch(var(--lch-orange-dark));
+      }
+    }
+  }
 }
 
 @layer component {
@@ -38,9 +100,23 @@
     border: none;
     cursor: pointer;
     font-size: 1em;
+    background-color: var(--color-button-bg);
+    color: var(--color-text);
+
+    &:hover {
+      background-color: oklch(from var(--color-button-bg) calc(l - 0.07) c h);
+      color: oklch(from var(--color-text) calc(l - 0.02) c h);
+    }
+
+    &:active {
+      background-color: oklch(from var(--color-button-bg) calc(l - 0.03) c h);
+      color: var(--color-text);
+    }
 
     &:disabled {
       cursor: unset;
+      background-color: oklch(from var(--color-button-bg) l c h / 0.5);
+      color: oklch(from var(--color-text) l c h / 0.65);
     }
   }
 
@@ -49,7 +125,7 @@
 
     td, th {
       padding: var(--s2);
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid var(--color-border);
     }
   }
 }
