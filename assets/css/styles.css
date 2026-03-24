@@ -38,8 +38,13 @@
   }
 
   main {
-    margin: 2rem 0 1rem 1rem;
+    margin: 0 0 1rem 1rem;
     width: calc(100% - 6rem);
+  }
+
+  #pcelka-h1 {
+    display: inline-block;
+    cursor: pointer;
   }
 
   #logs {

@@ -12,3 +12,5 @@ addHotkeyListener(
 );
 addHotkeyListener(["u", "г"], () => clickIdIfPresent("nav-up"));
 addHotkeyListener(["d", "в"], () => clickIdIfPresent("nav-down"));
+
+window.$ = (s) => document.querySelector(s);
