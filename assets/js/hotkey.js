@@ -22,6 +22,6 @@ export function addHotkeyListener(keys, fn) {
   if (!Array.isArray(keys)) keys = [keys];
   document.addEventListener("keydown", (e) => {
     if (isEventFiredOnInput(e)) return;
-    if (keys.includes(e.key)) fn();
+    if (keys.includes(e.key)) fn(e);
   });
 }

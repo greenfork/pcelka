@@ -18,6 +18,7 @@ program:
     unknown: Неизвестно
 logs:
   scroll_to_bottom: Прокрутить до конца (s)
+  search_placeholder: Поиск... (/)
 nav:
   up: Вверх (u)
   down: Вниз (d)
