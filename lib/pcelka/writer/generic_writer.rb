@@ -8,8 +8,8 @@ module Pcelka
         @sink = sink
       end
 
-      def write(id:, message:, is_error:)
-        @sink << [id, message, is_error]
+      def write(app:, message:, is_error:)
+        @sink << [app, message, is_error]
       end
     end
   end

@@ -22,21 +22,21 @@ module Pcelka
         @colors = {}
       end
 
-      def write(id:, message:, is_error:)
+      def write(app:, message:, is_error:)
         log_line = +""
         if is_error
           log_line << colored{ANSI_ERROR} << "STDERR "
         else
-          log_line << colored{ansi_color(id)}
+          log_line << colored{ansi_color(app)}
         end
-        log_line << id << ": " << colored{ANSI_RESET} << message
+        log_line << app << ": " << colored{ANSI_RESET} << message
         $stdout.write log_line
         $stdout.flush
       end
 
       private
-        def ansi_color(id)
-          @colors[id] ||=
+        def ansi_color(app)
+          @colors[app] ||=
             begin
               color = COLORS[@colors.size % COLORS.size]
               ansi = ANSI[color]

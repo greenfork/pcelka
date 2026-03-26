@@ -15,11 +15,11 @@ module Pcelka
         def write_programs_output(programs)
           programs.each do |program|
             if out = program.read_stdout
-              @writer.write id: program.id, message: out
+              @writer.write app: program.id, message: out
             end
 
             if err = program.read_stderr
-              @writer.write id: program.id, message: err, is_error: true
+              @writer.write app: program.id, message: err, is_error: true
             end
           end
         end

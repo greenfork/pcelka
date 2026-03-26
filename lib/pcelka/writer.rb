@@ -18,8 +18,8 @@ module Pcelka
       @writers << GenericWriter.new(port)
     end
 
-    def write(id:, message:, is_error: false)
-      @writers.each{ it.write(id:, message:, is_error:) }
+    def write(app:, message:, is_error: false)
+      @writers.each{ it.write(app:, message:, is_error:) }
     end
   end
 end
