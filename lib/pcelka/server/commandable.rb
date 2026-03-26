@@ -25,12 +25,23 @@ module Pcelka
 
           response =
             case @mailbox.pop
-            in :start_all then start_all
-            in :stop_all then stop_all
-            in [:start, id] then start(id)
-            in [:stop, id] then stop(id)
-            in [:restart, id] then restart(id)
-            in :report then report
+            in :start_all
+              @writer.write app: "_all", message: "_starting_all"
+              start_all
+            in :stop_all
+              @writer.write app: "_all", message: "_stopping_all"
+              stop_all
+            in [:start, id]
+              @writer.write app: id, message: "_starting"
+              start(id)
+            in [:stop, id]
+              @writer.write app: id, message: "_stopping"
+              stop(id)
+            in [:restart, id]
+              @writer.write app: id, message: "_restarting"
+              restart(id)
+            in :report
+              report
             in :shutdown
               warn "Pcelka shutting down..."
               stop_all

@@ -57,6 +57,7 @@ module Pcelka
       def prune_dead_programs
         @running_programs.filter! do |program|
           next true if program.alive?
+          @writer.write app: program.id, message: "_died", is_error: true
           program.stop
           false
         end

@@ -1,5 +1,11 @@
 <%# locals: (log:) %>
+
+<%
+app = log[:app].start_with?("_") ? t.logs.app.send(log[:app]) : log[:app]
+message = log[:message].start_with?("_") ? t.logs.message.send(log[:message]) : log[:message]
+%>
+
 <div class="log-line">
-  <span class="log-app"><%= log[:app] %>:</span>
-  <span class="log-message"><%= log[:message] %></span>
+  <span class="log-app"><%= app %>:</span>
+  <span class="log-message"><%= message %></span>
 </div>
