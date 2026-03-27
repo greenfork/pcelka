@@ -69,3 +69,7 @@ Style/PercentLiteralDelimiters:
   Enabled: false
 Style/InfiniteLoop:
   Enabled: false
+Style/RedundantInitialize:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
