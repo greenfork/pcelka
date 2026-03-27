@@ -3,9 +3,11 @@
 <%
 app = log[:app].start_with?("_") ? t.logs.app.send(log[:app]) : log[:app]
 message = log[:message].start_with?("_") ? t.logs.message.send(log[:message]) : log[:message]
+date = log[:created_at].strftime("%H:%M:%S")
 %>
 
 <div class="log-line">
+  <span><%= date %></span>
   <span class="log-app"><%= app %>:</span>
   <span class="log-message"><%= message %></span>
 </div>
