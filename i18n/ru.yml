@@ -18,7 +18,6 @@ program:
     unknown: Неизвестно
 logs:
   scroll_to_bottom: Прокрутить до конца (s)
-  search_placeholder: Поиск... (/)
   message:
     _starting_all: Запускаем все...
     _stopping_all: Останавливаем все...

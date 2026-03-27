@@ -18,7 +18,6 @@ program:
     unknown: Unknown
 logs:
   scroll_to_bottom: Scroll to bottom (s)
-  search_placeholder: Search... (/)
   message:
     _starting_all: Starting all...
     _stopping_all: Stopping all...
