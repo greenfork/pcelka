@@ -1,8 +1,16 @@
 #!/usr/bin/env ruby
 
-ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../Gemfile", __dir__)
-require "bundler/setup"
+$LOAD_PATH.unshift File.expand_path("../lib", __dir__)
+
+if ARGV[0]
+  ENV["PCELKA_PROCFILE"] = ARGV[0]
+end
+ENV["PCELKA_PROCFILE"] ||= "Procfile" if File.exist?("Procfile")
+
+if ENV["PCELKA_PROCFILE"]
+  ENV["PCELKA_PROCFILE"] = File.expand_path(ENV["PCELKA_PROCFILE"], Dir.pwd)
+end
 
 Dir.chdir(File.expand_path("..", __dir__)) do
-  Process.exec "bundle exec falcon serve --bind http://localhost:9292 -n 1"
+  Process.exec "falcon serve --bind http://localhost:9292 -n 1"
 end

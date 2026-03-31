@@ -73,3 +73,5 @@ Style/RedundantInitialize:
   Enabled: false
 Style/IfUnlessModifier:
   Enabled: false
+Gemspec/OrderedDependencies:
+  Enabled: false
